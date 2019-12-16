@@ -1,7 +1,7 @@
 <?php
 
 	session_start();
-	
+
 	if ((!isset($_POST['login'])) || (!isset($_POST['haslo'])))
 	{
 		header('Location: index.php');
@@ -19,9 +19,9 @@
 	{
 		$login = $_POST['login'];
 		$haslo = $_POST['haslo'];
-		
+
 		$login = htmlentities($login, ENT_QUOTES, "UTF-8");
-	
+
 		if ($rezultat = @$polaczenie->query(
 			sprintf("SELECT * FROM uzytkownicy WHERE username='%s'",
 				mysqli_real_escape_string($polaczenie,$login))))
@@ -30,39 +30,39 @@
 			if($ilu_userow>0)
 			{
 				$wiersz = $rezultat->fetch_assoc();
-				
+
 				if (password_verify($haslo, $wiersz['password']))
 				{
 					$_SESSION['zalogowany'] = true;
 					$_SESSION['userid'] = $wiersz['userid'];
 					$_SESSION['username'] = $wiersz['username'];
 					$_SESSION['email'] = $wiersz['email'];
-					$_SESSION['dnipremium'] = $wiersz['dnipremium'];
-					
+					$_SESSION['dnipremium'] = $wiersz['subscription_expiry_date'];
+
 					unset($_SESSION['blad']);
 					$rezultat->free_result();
-					
-					header('Location: gra.php');
+
+					header('Location: mainpage.php');
 				}
-				else 
+				else
 				{
 					$_SESSION['blad'] = '<span style="color:red">Nieprawidłowy login lub hasło!</span>';
 					header('Location: index.php');
 				}
-				
+
 			} else {
-				
+
 				$_SESSION['blad'] = '<span style="color:red">Nieprawidłowy login</span>';
 				header('Location: index.php');
-				
+
 			}
-			
+
 		}
 		else{
-			echo "Error: nie znaleziono uzytkownika :(";	
+			echo "Error: nie znaleziono uzytkownika :(";
 		}
-		
+
 		$polaczenie->close();
 	}
-	
+
 ?>
