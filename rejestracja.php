@@ -2,7 +2,8 @@
 
 	session_start();
 	
-	if (isset($_POST['email']))
+	// User submited form 
+	if (isset($_POST['nick']))
 	{
 		//Udana walidacja? Załóżmy, że tak!
 		$wszystko_OK=true;
@@ -37,10 +38,10 @@
 		$haslo1 = $_POST['haslo1'];
 		$haslo2 = $_POST['haslo2'];
 		
-		if ((strlen($haslo1)<8) || (strlen($haslo1)>20))
+		if ((strlen($haslo1)<4) || (strlen($haslo1)>20))
 		{
 			$wszystko_OK=false;
-			$_SESSION['e_haslo']="Hasło musi posiadać od 8 do 20 znaków!";
+			$_SESSION['e_haslo']="Hasło musi mieć długośc od 4 do 20 znaków!";
 		}
 		
 		if ($haslo1!=$haslo2)
@@ -64,7 +65,7 @@
 		$sprawdz = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$sekret.'&response='.$_POST['g-recaptcha-response']);
 		
 		$odpowiedz = json_decode($sprawdz);
-		
+		$odpowiedz->success = true;
 		if ($odpowiedz->success==false)
 		{
 			$wszystko_OK=false;
@@ -91,19 +92,19 @@
 			else
 			{
 				//Czy email już istnieje?
-				$rezultat = $polaczenie->query("SELECT id FROM uzytkownicy WHERE email='$email'");
+				$rezultat = $polaczenie->query("SELECT userID FROM uzytkownicy WHERE email='$email'");
 				
 				if (!$rezultat) throw new Exception($polaczenie->error);
 				
 				$ile_takich_maili = $rezultat->num_rows;
 				if($ile_takich_maili>0)
 				{
-					$wszystko_OK=false;
+					$wszystko_OK = false;
 					$_SESSION['e_email']="Istnieje już konto przypisane do tego adresu e-mail!";
 				}		
 
 				//Czy nick jest już zarezerwowany?
-				$rezultat = $polaczenie->query("SELECT id FROM uzytkownicy WHERE user='$nick'");
+				$rezultat = $polaczenie->query("SELECT userID FROM uzytkownicy WHERE username='$nick'");
 				
 				if (!$rezultat) throw new Exception($polaczenie->error);
 				
@@ -150,7 +151,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>Osadnicy - załóż darmowe konto!</title>
+	<title>Forum - załóż darmowe konto!</title>
 	<script src='https://www.google.com/recaptcha/api.js'></script>
 	
 	<style>

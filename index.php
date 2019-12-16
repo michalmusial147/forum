@@ -20,7 +20,7 @@
 
 <body>
 	
-	Tylko martwi ujrzeli koniec wojny - Platon<br /><br />
+	siemanko<br /><br />
 	
 	<a href="rejestracja.php">Rejestracja - załóż darmowe konto!</a>
 	<br /><br />
