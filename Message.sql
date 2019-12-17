@@ -1,0 +1,10 @@
+
+
+CREATE TABLE IF NOT EXISTS `Messages` (
+  messageID INT(11) NOT NULL AUTO_INCREMENT,
+  Content text COLLATE utf8_polish_ci NOT NULL,
+  UserID int NOT NULL,
+  PRIMARY KEY (messageID),
+  FOREIGN KEY (UserID) REFERENCES users(user_pk)
+
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;

@@ -23,39 +23,18 @@ SET time_zone = '+00:00';
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `uzytkownicy`
+-- Struktura tabeli dla tabeli `users`
 --
 
-
-CREATE TABLE IF NOT EXISTS `uzytkownicy` (
+CREATE TABLE IF NOT EXISTS `users` (
   `userID` INT(11) NOT NULL AUTO_INCREMENT,
-  `username` text COLLATE utf8_polish_ci NOT NULL,
-  `password` text COLLATE utf8_polish_ci NOT NULL,
-  `email` text COLLATE utf8_polish_ci NOT NULL,
+  `username` varchar(50) COLLATE utf8_polish_ci NOT NULL,
+  `password` varchar(150) COLLATE utf8_polish_ci NOT NULL,
+  `email` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   `subscription_expiry_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  CONSTRAINT user_pk PRIMARY KEY (userID)
+  PRIMARY KEY (userID)
 ) ENGINE=InnoDBInnoDBddd AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
--- Zrzut danych tabeli `uzytkownicy`
+-- Zrzut danych tabeli `users`
 --
-
-INSERT INTO `uzytkownicy` (`userID`, `username`, `password`, `email`,`subscription_expiry_date`) VALUES
-(1, 'adam', '$2cZXca', 'adam@gmail.com', '2017-01-15 09:30:15'),
-(2, 'marek', 'asdfg', 'marek@gmail.com',  '0000-00-00 00:00:00'),
-(3, 'anna', 'zxcvb', 'anna@gmail.com','0000-00-00 00:00:00'),
-(4, 'andrzej', 'asdfg', 'andrzej@gmail.com',  '0000-00-00 00:00:00');
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
