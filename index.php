@@ -20,18 +20,24 @@
 
 <body>
 
-	siemanko<br /><br />
+	Hello World<br /><br />
 
-	<a href="rejestracja.php">Rejestracja - załóż darmowe konto!</a>
+	
 	<br /><br />
 
 	<form action="zaloguj.php" method="post">
 
 		Login: <br /> <input type="text" name="login" /> <br />
 		Hasło: <br /> <input type="password" name="haslo" /> <br /><br />
-		<input type="submit" value="Zaloguj się" />
+		<input type="submit" value="Sign in!" />
 
 	</form>
+	<br />
+	<div> 
+	<a href="rejestracja.php">Sign Up</a>
+	</div>
+	<br />
+
 
 <?php
 	if(isset($_SESSION['blad']))	echo $_SESSION['blad'];
