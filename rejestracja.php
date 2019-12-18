@@ -119,7 +119,7 @@
 				{
 					//Hurra, wszystkie testy zaliczone, dodajemy gracza do bazy
 
-					if ($polaczenie->query("INSERT INTO users VALUES (NULL, '$nick', '$haslo_hash', '$email', now() + INTERVAL 14 DAY)"))
+					if ($polaczenie->query("INSERT INTO users VALUES (NULL, '$nick', '$haslo_hash', '$email', now() + INTERVAL 28 DAY)"))
 					{
 						$_SESSION['udanarejestracja']=true;
 						header('Location: witamy.php');
