@@ -1,0 +1,7 @@
+
+
+CREATE TABLE IF NOT EXISTS `Categories` (
+  CategoryID INT(11) NOT NULL AUTO_INCREMENT,
+  CategoryName text COLLATE utf8_polish_ci NOT NULL,
+  PRIMARY KEY (CategoryID)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
