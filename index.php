@@ -18,7 +18,11 @@
 </head>
 
 <body>
-	<br />
+
+	<div class="header">
+
+	</div>
+	
 	<div id="container">
 		<div align="center">
 			Witam
@@ -26,13 +30,13 @@
 		<div align="center">
 			<form action="zaloguj.php" method="post">
 
-				Login: <br /> <input type="text" name="login" /> <br />
-				Hasło: <br /> <input type="password" name="haslo" /> <br /><br />
+				Login: <br/> <input type="text" name="login" /> <br />
+				Hasło: <br/> <input type="password" name="haslo" /> <br /><br />
 				<input type="submit" value="Sign in!" />
 
 			</form>
 			<br />
-			<a href="rejestracja.php">Sign Up</a>
+			<button> <a href="rejestracja.php">Sign Up</a> </button>
 		</div>
 	</div>
 

@@ -166,6 +166,13 @@
 
 <body>
 
+<div class="header">
+	<h1>Witaj
+	<h2>A niewiedza i nierozum, czy to nie jest też niedostatek w stanie duszy?</h2>
+	</div>
+
+
+
 	<form method="post">
 
 		Nickname: <br /> <input type="text" value="<?php

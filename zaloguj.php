@@ -34,11 +34,11 @@
 				if (password_verify($haslo, $wiersz['password']))
 				{
 					$_SESSION['zalogowany'] = true;
-					$_SESSION['userid'] = $wiersz['userid'];
+					$_SESSION['userid'] = $wiersz['userID'];
 					$_SESSION['username'] = $wiersz['username'];
 					$_SESSION['email'] = $wiersz['email'];
 					$_SESSION['dnipremium'] = $wiersz['subscription_expiry_date'];
-
+					$_SESSION['admin'] = $wiersz['admin'];
 					unset($_SESSION['blad']);
 					$rezultat->free_result();
 
@@ -51,7 +51,6 @@
 				}
 
 			} else {
-
 				$_SESSION['blad'] = '<span style="color:red">Nieprawidłowy login</span>';
 				header('Location: index.php');
 
