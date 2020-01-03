@@ -1,0 +1,250 @@
+body
+{	margin: 0px;
+	display: flex;
+	flex-direction: column;
+	font-family: 'Open Sans';
+	background-color: #d1d1d1;
+	width: auto;
+	height: auto;
+	
+	
+}
+
+
+table.second_table 
+{
+	border-collapse: collapse;
+	width: 100%;
+	border-color: #111;
+ }
+ 
+ table.second_table td, table.second_table th 
+ {
+	border: 1px solid #ddd;
+	padding: 4px;
+	width: auto;
+ }
+ #td_pad{
+	 margin: 2px;
+	padding: 4px;
+ }
+ #main_categories{
+	background-color: #e4a667;
+	font-size: 26px;
+	font-weight: bold;
+	padding: 12px;
+  }
+ table.second_table td
+ {
+	font-size: 16px;
+	font-weight: normal;
+	background-color: #ffecd9;
+	border-color: #111;
+ }
+ table.second_table tr:nth-child(even) td
+ {
+	 background-color: #e0cbb6;
+ }
+ 
+ table.second_table tr
+ {
+	border-color: #111;
+	font-size: 18px;
+ }
+
+ table.second_table th {
+	font-size: 20px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #e4a667;
+	color: black;
+	border-color: #111;
+ }
+
+ table.second_table tr:hover td
+ {
+	 font-size: 20;
+	 background-color: rgb(255, 255, 255);
+ }
+
+a:link
+{
+	color: black;
+	text-decoration: none;
+}
+
+header,footer {
+    height: 30px;
+}
+#logo
+{
+	width: 100%;
+	height: 50px;
+	background-color: #485b3b;
+	font-size: 36px;
+	color: white;
+	text-align: center;
+	text-transform: uppercase;
+	padding: 5px 0px 5px 0px;
+	letter-spacing: 3px;
+	border-bottom: 2px solid #33402a;
+	text-shadow:
+	2px 2px 0 #33402a,
+	-2px 2px 0 #33402a,
+	-2px -2px 0 #33402a,
+	2px -2px 0 #33402a;
+}
+
+#container
+{
+	background-color: #f8f8f2;
+	width: auto;
+	padding: 100px;
+	height: auto;
+
+}
+
+#stopka
+{
+	margin-left: 0px;
+	margin-right: 0px;
+	width: auto;
+	height: auto;
+	background-color: #363949;
+	font-size: 12px;
+	color: white;
+	text-align: left;
+	text-transform: uppercase;
+	padding: 7px;
+	letter-spacing: 1px;
+	border-top: 2px solid #0b0b0f;
+	text-shadow:
+	2px 2px 0 #33402a,
+	-2px 2px 0 #33402a,
+	-2px -2px 0 #33402a,
+	2px -2px 0 #33402a;
+}
+
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  width: 100%;
+  top: 0;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+.active {
+  background-color: #4CAF50;
+}
+
+#menu_button{
+	background-color: #333;
+}
+
+#post{
+	font-size: 16px;
+	border-radius: 10px;
+	margin: 5px;
+	padding: 7px;
+	background-color: #eccfb2;
+}
+#post_header{
+	font-size: 12px;
+	margin: 5px;
+}
+#thread_header{
+	font-weight: bold;
+	text-align: center;
+	border-radius: 20px;
+	font-size: 24px;
+	margin: 5px;
+	padding: 7px;
+	background-color: #ffb133;
+}
+
+#postform{
+	
+	width: 100%;
+	height: 100px;
+	border-radius: 10px;
+	padding: 2px;
+	margin: 2px;
+	font-size: 16px;
+	background-color: white;
+}
+
+.demo-icon
+{
+	font-size: 30px;
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  background-color: rgba(255, 94, 94, 0);
+  color: rgb(185, 3, 3);
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  padding: 3px;
+  margin-right: .1em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+
+  margin-left: .1em;
+ 
+  /* You can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+ 
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+ 
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.demo-icon:hover
+{
+	color: rgb(105, 63, 63);
+}
+
+
+.grid-container {
+	display: grid;
+	grid-template-columns: auto auto;
+	
+ }
+ .grid-item-right {
+	
+	text-align: right;
+ }
+
+ .grid-item-left {
+	
+	font-size: 14px;
+	text-align: left;
+ }
