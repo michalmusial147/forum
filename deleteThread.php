@@ -15,11 +15,12 @@ if(! isset($_SESSION)){
 $Thread = $connection->query("Select * from Threads Where ThreadID = ".$_POST["threadID"]);
 $Row = $Thread->fetch_assoc();
 
-if($Row["UserID"] == $UserID) {
+if($Row["UserID"] == $UserID || $_SESSION['admin'] == true) {
    $connection->query("Delete from Threads Where ThreadID = ".$_POST["threadID"]);
    echo "Usunięto wątek";
 } 
-else {
+else 
+{
    echo "To nie jest twój wątek";
 }
 ?>

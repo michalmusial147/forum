@@ -6,11 +6,7 @@ body
 	background-color: #d1d1d1;
 	width: auto;
 	height: auto;
-	
-	
 }
-
-
 table.second_table 
 {
 	border-collapse: collapse;
@@ -33,6 +29,8 @@ table.second_table
 	font-size: 26px;
 	font-weight: bold;
 	padding: 12px;
+	border-radius: 20px;
+	margin-top: 12px;
   }
  table.second_table td
  {
@@ -74,8 +72,8 @@ a:link
 	text-decoration: none;
 }
 
-header,footer {
-    height: 30px;
+.header,footer {
+   padding: 16px;
 }
 #logo
 {
@@ -136,14 +134,19 @@ ul {
   position: -webkit-sticky; /* Safari */
   position: sticky;
   width: 100%;
+  padding: 0px;
+  
   top: 0;
 }
 
 li {
+	font-size: 24px;
+	height: 100%;
   float: left;
 }
 
 li a {
+	height: 100%;
   display: block;
   color: white;
   text-align: center;

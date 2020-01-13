@@ -11,12 +11,14 @@ $UserID = $_SESSION['userid'];
 if(! isset($_SESSION)){
    echo "Najpierw się zaloguj?";
 }
-if($_SESSION['admin'] == true) 
-{
-   $name = $_POST["newcategory"];
-   if($connection->query("Insert INTO Categories Values (null, '$name', null)"))
+if($_SESSION['admin'] == true)
+{  
+   $name = $_POST["usernameToBan"];
+   
+   if( $connection->query("UPDATE users SET isBlocked = true WHERE username = '$name' "))
    {
-      echo "Dodano kategorię: $name";
+     
+      echo "zbanowano użytkownika, $connection->error";
    }
    else
    {

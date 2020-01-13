@@ -23,12 +23,19 @@
 <body>
 	<div class="header">
 	<h1>Witaj,  <?php echo $_SESSION['username']?></h1>
-	<h2>A niewiedza i nierozum, czy to nie jest też niedostatek w stanie duszy?</h2>
+	
 	</div>
 
 	<ul>
 	<li><a href="mainpage.php">Home</a></li>
-	<li><a href="logout.php">Wyloguj się</a></li>
+	<li><a href="logout.php">Wyloguj się</a></li> 
+	
+	<?php
+	if($_SESSION['admin']==true)
+	{ 
+		echo"<li><a href='control.php'>Panel kontrolny</a></li>";
+	}
+	?> 
 	</ul>
 
 	<?php
@@ -37,7 +44,7 @@
 		{
 			echo "Error: ".$connection->connect_errno;
 		}
-		$Categorynames = $connection->query("Select * from Categories Order by CategoryName");
+		$Categorynames = $connection->query("Select * from Categories Order by CategoryID");
 		$Threads = $connection->query("Select * from Threads Order By DateOpened");
 		$Users = $connection->query("Select * from Users");
 		//if($Categorynames || $Threads|| $Users)
@@ -54,7 +61,7 @@
 					echo "<table class = second_table> 
 						<thead>
 						<tr>
-						<th>Wątek</th> <th>Data otwarcia</th> <th>Użytkownik</th> <th>Liczba postów</th> <th>Ostatni post</th>
+						<th>Wątek</th> <th>Data otwarcia</th> <th>Zaczął użytkownik</th> <th>Liczba postów</th> <th>Ostatni post</th>
 						</tr>
 						</thead> <tbody>";
 						$Threads->data_seek(0); 
@@ -99,6 +106,7 @@
 						$iter++;
 					}
 					echo"<div id = main_categories>";
+					echo "Nowa pusta kategoria";
 					if($_SESSION['admin'] == 1)
 					{
 						echo "<form class='add_category' '".$row_categories["CategoryID"]."'>  <br> <input type='text' name='newcategory'/> <input type='submit' value='Dodaj kategorię'> </form>  ";

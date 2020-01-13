@@ -71,8 +71,6 @@
 			$wszystko_OK=false;
 			$_SESSION['e_bot']="Potwierdź, że nie jesteś botem!";
 		}
-
-		//Zapamiętaj wprowadzone dane
 		$_SESSION['fr_nick'] = $nick;
 		$_SESSION['fr_email'] = $email;
 		$_SESSION['fr_haslo1'] = $haslo1;
@@ -91,7 +89,6 @@
 			}
 			else
 			{
-				//Czy email już istnieje?
 				$rezultat = $polaczenie->query("SELECT userID FROM users WHERE email='$email'");
 
 				if (!$rezultat) throw new Exception($polaczenie->error);
@@ -102,8 +99,6 @@
 					$wszystko_OK = false;
 					$_SESSION['e_email']="Istnieje już konto przypisane do tego adresu e-mail!";
 				}
-
-				//Czy nick jest już zarezerwowany?
 				$rezultat = $polaczenie->query("SELECT userID FROM users WHERE username='$nick'");
 
 				if (!$rezultat) throw new Exception($polaczenie->error);
@@ -117,9 +112,7 @@
 
 				if ($wszystko_OK==true)
 				{
-					//Hurra, wszystkie testy zaliczone, dodajemy gracza do bazy
-
-					if ($polaczenie->query("INSERT INTO users VALUES (NULL, '$nick', '$haslo_hash', '$email', now() + INTERVAL 28 DAY)"))
+					if ($polaczenie->query("INSERT INTO users VALUES (NULL, '$nick', '$haslo_hash', '$email', now() + INTERVAL 28 DAY, 0 , false)"))
 					{
 						$_SESSION['udanarejestracja']=true;
 						header('Location: witamy.php');
@@ -149,9 +142,12 @@
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
-	<meta charset="utf-8" />
+<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>Forum - załóż darmowe konto!</title>
+	<link rel="stylesheet" type="text/css" href="theme.css"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="mainpage_scripts.js"></script>
+	<title>Forum</title>
 	<script src='https://www.google.com/recaptcha/api.js'></script>
 
 	<style>
@@ -167,103 +163,101 @@
 <body>
 
 <div class="header">
-	<h1>Witaj
-	<h2>A niewiedza i nierozum, czy to nie jest też niedostatek w stanie duszy?</h2>
-	</div>
+	<h1>Rejestracja
+	
+</div>
+	<div id=container>
+			<form method="post">
 
+				Nickname: <br /> <input type="text" value="<?php
+					if (isset($_SESSION['fr_nick']))
+					{
+						echo $_SESSION['fr_nick'];
+						unset($_SESSION['fr_nick']);
+					}
+				?>" name="nick" /><br />
 
+				<?php
+					if (isset($_SESSION['e_nick']))
+					{
+						echo '<div class="error">'.$_SESSION['e_nick'].'</div>';
+						unset($_SESSION['e_nick']);
+					}
+				?>
 
-	<form method="post">
+				E-mail: <br /> <input type="text" value="<?php
+					if (isset($_SESSION['fr_email']))
+					{
+						echo $_SESSION['fr_email'];
+						unset($_SESSION['fr_email']);
+					}
+				?>" name="email" /><br />
 
-		Nickname: <br /> <input type="text" value="<?php
-			if (isset($_SESSION['fr_nick']))
-			{
-				echo $_SESSION['fr_nick'];
-				unset($_SESSION['fr_nick']);
-			}
-		?>" name="nick" /><br />
+				<?php
+					if (isset($_SESSION['e_email']))
+					{
+						echo '<div class="error">'.$_SESSION['e_email'].'</div>';
+						unset($_SESSION['e_email']);
+					}
+				?>
 
-		<?php
-			if (isset($_SESSION['e_nick']))
-			{
-				echo '<div class="error">'.$_SESSION['e_nick'].'</div>';
-				unset($_SESSION['e_nick']);
-			}
-		?>
+				Twoje hasło: <br /> <input type="password"  value="<?php
+					if (isset($_SESSION['fr_haslo1']))
+					{
+						echo $_SESSION['fr_haslo1'];
+						unset($_SESSION['fr_haslo1']);
+					}
+				?>" name="haslo1" /><br />
 
-		E-mail: <br /> <input type="text" value="<?php
-			if (isset($_SESSION['fr_email']))
-			{
-				echo $_SESSION['fr_email'];
-				unset($_SESSION['fr_email']);
-			}
-		?>" name="email" /><br />
+				<?php
+					if (isset($_SESSION['e_haslo']))
+					{
+						echo '<div class="error">'.$_SESSION['e_haslo'].'</div>';
+						unset($_SESSION['e_haslo']);
+					}
+				?>
 
-		<?php
-			if (isset($_SESSION['e_email']))
-			{
-				echo '<div class="error">'.$_SESSION['e_email'].'</div>';
-				unset($_SESSION['e_email']);
-			}
-		?>
+				Powtórz hasło: <br /> <input type="password" value="<?php
+					if (isset($_SESSION['fr_haslo2']))
+					{
+						echo $_SESSION['fr_haslo2'];
+						unset($_SESSION['fr_haslo2']);
+					}
+				?>" name="haslo2" /><br />
 
-		Twoje hasło: <br /> <input type="password"  value="<?php
-			if (isset($_SESSION['fr_haslo1']))
-			{
-				echo $_SESSION['fr_haslo1'];
-				unset($_SESSION['fr_haslo1']);
-			}
-		?>" name="haslo1" /><br />
+				<label>
+					<input type="checkbox" name="regulamin" <?php
+					if (isset($_SESSION['fr_regulamin']))
+					{
+						echo "checked";
+						unset($_SESSION['fr_regulamin']);
+					}
+						?>/> Akceptuję regulamin
+				</label>
 
-		<?php
-			if (isset($_SESSION['e_haslo']))
-			{
-				echo '<div class="error">'.$_SESSION['e_haslo'].'</div>';
-				unset($_SESSION['e_haslo']);
-			}
-		?>
+				<?php
+					if (isset($_SESSION['e_regulamin']))
+					{
+						echo '<div class="error">'.$_SESSION['e_regulamin'].'</div>';
+						unset($_SESSION['e_regulamin']);
+					}
+				?>
 
-		Powtórz hasło: <br /> <input type="password" value="<?php
-			if (isset($_SESSION['fr_haslo2']))
-			{
-				echo $_SESSION['fr_haslo2'];
-				unset($_SESSION['fr_haslo2']);
-			}
-		?>" name="haslo2" /><br />
+				<div class="g-recaptcha" data-sitekey="6Led3ccUAAAAAGFKCCGvwHJqV5bEPstwwKLvlGLp"></div>
 
-		<label>
-			<input type="checkbox" name="regulamin" <?php
-			if (isset($_SESSION['fr_regulamin']))
-			{
-				echo "checked";
-				unset($_SESSION['fr_regulamin']);
-			}
-				?>/> Akceptuję regulamin
-		</label>
+				<?php
+					if (isset($_SESSION['e_bot']))
+					{
+						echo '<div class="error">'.$_SESSION['e_bot'].'</div>';
+						unset($_SESSION['e_bot']);
+					}
+				?>
 
-		<?php
-			if (isset($_SESSION['e_regulamin']))
-			{
-				echo '<div class="error">'.$_SESSION['e_regulamin'].'</div>';
-				unset($_SESSION['e_regulamin']);
-			}
-		?>
+				<br />
 
-		<div class="g-recaptcha" data-sitekey="6Led3ccUAAAAAGFKCCGvwHJqV5bEPstwwKLvlGLp"></div>
+				<input type="submit" value="Zarejestruj się" />
 
-		<?php
-			if (isset($_SESSION['e_bot']))
-			{
-				echo '<div class="error">'.$_SESSION['e_bot'].'</div>';
-				unset($_SESSION['e_bot']);
-			}
-		?>
-
-		<br />
-
-		<input type="submit" value="Zarejestruj się" />
-
-	</form>
-
+			</form>
+		</div>
 </body>
 </html>

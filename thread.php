@@ -2,7 +2,10 @@
 
 	session_start();
 	require_once "connect.php";
-
+	if(!isset($_SESSION['username'])){
+		header('Location: index.php');
+		exit;
+	}
 ?>
 
 
@@ -31,8 +34,15 @@
 
 <ul>
 	<li><a href="mainpage.php">Home</a></li>
-	<li><a href="logout.php">Wyloguj się</a></li>
-</ul>
+	<li><a href="logout.php">Wyloguj się</a></li> 
+	
+	<?php
+	if($_SESSION['admin'] == true)
+	{ 
+		echo"<li><a href='control.php'>Panel kontrolny</a></li>";
+	}
+	?> 
+	</ul>
 
 <?php
 		

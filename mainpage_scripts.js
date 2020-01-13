@@ -124,10 +124,30 @@ $(document).ready(function(){
 
   $("form.add_category").submit(function(e) {
    e.preventDefault(); // avoid to execute the actual submit of the form.
-      //to do +++++
+   //to do +++++
    var url = 'addCategory.php';
    var data = $(this).serializeArray();
    $.ajax({
+   type: "POST",
+   url: url,
+   data: data, // serializes the form's elements.
+   success: function(result)
+   {
+   alert(result); // show response from the php script.
+   location.reload(true);
+   },
+   error: function(result){
+   alert("Error");
+   }
+   });
+   });
+
+
+   $("form.deleteCategory").submit(function(e) {
+      e.preventDefault(); 
+      var url = 'deleteCategory.php';
+      var data = $(this).serializeArray();
+      $.ajax({
          type: "POST",
          url: url,
          data: data, // serializes the form's elements.
@@ -140,8 +160,27 @@ $(document).ready(function(){
             alert("Error");
          }
       });
-
+   });
+   
+   $("form.banUser").submit(function(e) {
+      e.preventDefault(); 
+      var url = 'banUser.php';
+      var data = $(this).serializeArray();
+      alert("banuje");
+      $.ajax({
+         type: "POST",
+         url: url,
+         data: data, // serializes the form's elements.
+         success: function(result)
+         {
+            alert(result); // show response from the php script.
+            location.reload(true);
+         },
+         error: function(result){
+            alert("Error");
+         }
+      });
+   });
+   
 });
-
- });
 

@@ -39,6 +39,7 @@
 					$_SESSION['email'] = $wiersz['email'];
 					$_SESSION['dnipremium'] = $wiersz['subscription_expiry_date'];
 					$_SESSION['admin'] = $wiersz['admin'];
+					$_SESSION['isBlocked'] = $wiersz['isBlocked'];
 					unset($_SESSION['blad']);
 					$rezultat->free_result();
 
